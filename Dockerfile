@@ -1,9 +1,12 @@
-FROM python:3.8
-WORKDIR /usr/src/app
+FROM python:3.6
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+WORKDIR /usr/src/app
+
 COPY . .
 RUN pip install -r requirements.txt
+COPY . /usr/src/app
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 #RUN python manage.py createsuperuser 
