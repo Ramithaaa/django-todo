@@ -1,6 +1,6 @@
 FROM python:3
 
-RUN pip install -r requirements.txt
+RUN pip install django==3.2
 COPY . .
 
 
