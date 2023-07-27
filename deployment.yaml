@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment
+  labels:
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app:todo
+    spec:
+      containers:
+      - name: todo
+        image: huarami/app:v3
+        ports:
+        - containerPort: 8000
