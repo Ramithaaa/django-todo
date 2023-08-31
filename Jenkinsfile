@@ -1,3 +1,9 @@
+def COLOR_MAP =[
+    'SUCCESS': 'good'
+    'FAILURE': 'danger'
+]
+
+
 pipeline {
     agent any
     stages {
@@ -25,4 +31,12 @@ pipeline {
         } 
         
     }
+    post {
+        always {
+            slackSend channel: '#jenkins',
+                      color: COLORMAP[currentBuild.currentResult],
+                      message: "Todo app build job:${env.BUILD_NUMBER} is ${currentBuild.currentResult}"
+        }
+    }
+
 }
