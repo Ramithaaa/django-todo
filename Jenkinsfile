@@ -35,7 +35,7 @@ pipeline {
         always {
             slackSend channel: '#jenkins',
                       color: COLORMAP[currentBuild.currentResult],
-                      message: "Todo app build job:${env.BUILD_NUMBER} is ${currentBuild.currentResult}"
+                      message: "Todo app build job:${env.BUILD_NUMBER} is a ${currentBuild.currentResult}"
         }
     }
 
