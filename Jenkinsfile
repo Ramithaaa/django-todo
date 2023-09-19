@@ -1,3 +1,9 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger'
+
+]
+
 pipeline {
     agent any
     stages {
@@ -24,6 +30,13 @@ pipeline {
             }
         } 
         
+    }
+    post {
+        always {
+            slackSend channel: '#todoapp',
+                      color: COLORMAP[currentBuild.currentResult],
+                      message: "Todoapp build job:${currentBuild} is a ${currentResult}"
+        }
     }
     
 }
