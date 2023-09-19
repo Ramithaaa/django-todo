@@ -24,11 +24,13 @@ pipeline {
                     sh "docker push ${env.user}/app:v1"
             }   }
         }
-        stage ('Deploy') {
+        stage ('Deploy to Kubernetes') {
+            agent { label 'KUBE' }
             steps {
-                sh "docker-compose down && docker-compose up -d"
+                sh "kubectl apply -f deployment.yaml"
+                sh "kubectl apply -f svc.yaml"
             }
-        } 
+        }
         
     }
     post {
